@@ -13,6 +13,9 @@ public:
     // 析构，释放内存
     ~Buffer();
 
+    // Buffer扩容函数,size实际需要的大小
+    void extendRoom(int size);
+
     // 得到剩余可写的内存容量
     inline int writeableSize()
     {
