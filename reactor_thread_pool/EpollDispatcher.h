@@ -2,7 +2,9 @@
 #define REACTOR_THREAD_POOL_EPOLLDISPATCHER_H
 
 #include "Dispatcher.h"
-
+#include "Channel.h"
+#include <string>
+#include <sys/epoll.h>
 class EpollDispatcher : public Dispatcher{  // 继承父类Dispatcher
 public:
     EpollDispatcher(struct EventLoop* eventLoop);

@@ -1,7 +1,8 @@
 #include "EpollDispatcher.h"
+#include <cstdlib>
 #include "EventLoop.h"
-#include <sys/epoll.h>
 #include <unistd.h>
+#include "Log.h"
 // 用户传给子类的evLoop传递给父类，让父类保存起来
 EpollDispatcher::EpollDispatcher(EventLoop *eventLoop) : Dispatcher(eventLoop)
 {
