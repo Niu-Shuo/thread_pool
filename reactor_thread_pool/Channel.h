@@ -47,11 +47,11 @@ public:
     // 判断的时候需要检测文件描述符的读事件
     bool isReadEventEnable();
 
-    // 修改fd的销毁事件(检测 or 不检测)，flag是否为读时间
-    void timeoutEventEnable(bool flag);
+    // // 修改fd的销毁事件(检测 or 不检测)，flag是否为读时间
+    // void timeoutEventEnable(bool flag);
 
-    // 判断的时候需要检测文件描述符的读事件
-    bool isTimeoutEventEnable();
+    // // 判断的时候需要检测文件描述符的读事件
+    // bool isTimeoutEventEnable();
 
     /*
         内联函数，函数调用不需要压栈，直接进行代码的替换，提高程序执行效率，但也需要更多内存，多用于简单

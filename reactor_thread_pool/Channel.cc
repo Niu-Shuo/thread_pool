@@ -55,9 +55,10 @@ void Channel::readEventEnable(bool flag)
 
 bool Channel::isReadEventEnable()
 {
-    return false;
+    return m_events & static_cast<int>(FDEvent::ReadEvent);
 }
 
+/*
 void Channel::timeoutEventEnable(bool flag)
 {
     // 添加写事件
@@ -72,8 +73,8 @@ void Channel::timeoutEventEnable(bool flag)
         m_events &= ~static_cast<int>(FDEvent::TimeOut); // channel->events 第一位清零之后，超时事件就不再检测
     }
 }
-
 bool Channel::isTimeoutEventEnable()
 {
     return false;
 }
+*/
