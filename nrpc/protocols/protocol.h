@@ -1,5 +1,5 @@
-#ifndef NRPC_BASE_PROTOCOL_H
-#define NRPC_BASE_PROTOCOL_H
+#ifndef NRPC_PROTOCOLS_PROTOCOL_H
+#define NRPC_PROTOCOLS_PROTOCOL_H
 
 #include "protocol.pb.h"
 #include <ostream>
