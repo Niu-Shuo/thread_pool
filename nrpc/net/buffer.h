@@ -18,39 +18,39 @@ namespace nrpc
 
         // 状态成员函数
         // 可读
-        inline size_t readable() const
+        size_t readable() const
         {
             return m_windex - m_rindex;
         }
 
         // 可写
-        inline size_t writeable() const
+        size_t writeable() const
         {
             return m_data.size() - m_windex;
         }
 
-        inline char *begin()
+        char *begin()
         {
             return &m_data[m_rindex];
         }
 
-        inline char *end()
+        char *end()
         {
             return &m_data[m_windex];
         }
 
-        inline const char *data() const
+        const char *data() const
         {
             return &m_data[0];
         }
 
         // 额外数据
-        inline size_t extraable() const
+        size_t extraable() const
         {
             return m_extra_data.size() - m_extra_index;
         }
 
-        inline const char *extra_begin() const
+        const char *extra_begin() const
         {
             return &m_extra_data[m_extra_index];
         }
@@ -75,7 +75,7 @@ namespace nrpc
 
         // read member functions
         // retrieve data
-        inline void retrieve(size_t n)
+        void retrieve(size_t n)
         {
             m_rindex += n;
         }
@@ -87,12 +87,12 @@ namespace nrpc
         int read_fd(int fd);
 
         // append
-        inline void append(const char *str)
+        void append(const char *str)
         {
             _append(str, strlen(str));
         }
 
-        inline void append(const std::string &str)
+        void append(const std::string &str)
         {
             _append(str.data(), static_cast<int>(str.length()));
         }
@@ -110,18 +110,18 @@ namespace nrpc
         }
 
         // append_extra
-        inline void append_extra(const std::string &extra_data)
+        void append_extra(const std::string &extra_data)
         {
             m_extra_data = extra_data;
         }
 
-        inline void append_extra(std::string &&extra_data)
+        void append_extra(std::string &&extra_data)
         {
             m_extra_data.swap(extra_data);
         }
 
         // clear
-        inline void clear()
+        void clear()
         {
             m_rindex = m_windex = m_extra_index = 0;
         }
@@ -150,7 +150,37 @@ namespace nrpc
 
     class BufferView
     {
+    public:
+        BufferView() : m_buf(nullptr), m_begin(0), m_end(0) {}
+        BufferView(const Buffer &buf, size_t length) : m_buf(&buf), m_begin(m_buf->m_rindex), m_end(m_begin + length) {}
+        BufferView(const Buffer &buf, size_t begin, size_t end) : m_buf(&buf), m_begin(begin), m_end(end) {}
+        BufferView(const Buffer &buf, const char *begin, size_t length) : m_buf(&buf), m_begin(begin - m_buf->data()), m_end(m_begin + length) {}
+
+        bool empty() const
+        {
+            return m_begin == m_end;
+        }
+
+        std::string str() const
+        {
+            if (!m_buf)
+            {
+                return std::string();
+            }
+            return std::string(m_buf->data() + m_begin, m_buf->data() + m_end);
+        }
+
+    private:
+        const Buffer *m_buf;
+        size_t m_begin, m_end;
     };
+
+    inline std::ostream &operator<<(std::ostream &os, const BufferView &bufview)
+    {
+        os << bufview.str();
+        return os;
+    }
+
 } // namespace nrpc
 
 #endif
