@@ -53,6 +53,8 @@ namespace nrpc
         Context* new_context() { return new HTTPContext(); }
 
         const char * name() { return "HTTP"; }
+    public:
+        static const size_t HTTPMethodMaxLen = 7;
     };
 } // namespace nrpc
 
