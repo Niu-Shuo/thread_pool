@@ -1,0 +1,1 @@
+/usr/bin/c++  -fsanitize=address -fno-omit-frame-pointer -g -rdynamic CMakeFiles/test_client.dir/test_client.cc.o -o ../../bin/test_client   -L/home/niushuo/cpp/thread_pool/netrpc/lib  -Wl,-rpath,/home/niushuo/cpp/thread_pool/netrpc/lib -ltinyxml -lpthread -lprotobuf ../../lib/libnetrpc.a -lfmt -lzookeeper_mt -ltinyxml2 -lpthread -lprotobuf -lzookeeper_mt 

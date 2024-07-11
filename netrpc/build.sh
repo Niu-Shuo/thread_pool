@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+
+create_dir() {
+  if [ ! -d "$1" ]; then
+    mkdir "$1"
+  fi
+}
+
+# 如果没有 build 目录，创建该目录
+create_dir 'build'
+create_dir 'lib'
+create_dir 'bin'
+create_dir 'log'
+
+rm -rf "$(pwd)/build/*"
+
+cd "$(pwd)/build" &&
+cmake .. &&
+make

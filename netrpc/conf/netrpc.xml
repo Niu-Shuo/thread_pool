@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+  <log>
+    <log_level>DEBUG</log_level>
+    <log_file_name>test_rpc_server</log_file_name>
+    <log_file_path>../log/</log_file_path>
+    <log_max_file_size>10000000</log_max_file_size>
+    <log_sync_interval>500</log_sync_interval>
+  </log>
+
+  <server>
+    <ip>127.0.0.1</ip>
+    <port>12345</port>
+    <io_threads>4</io_threads>
+  </server>
+
+  <zk_config>
+    <zk_ip>127.0.0.1</zk_ip>
+    <zk_port>2181</zk_port>
+  </zk_config>
+
+  <stubs>
+    <rpc_server>
+      <!-- 对端 rpc 服务唯一名字 -->
+      <name>makeOrder</name>
+      <ip>127.0.0.1</ip>
+      <port>12345</port>
+      <timeout>1000</timeout>
+    </rpc_server>
+  </stubs>
+  
+</root>
